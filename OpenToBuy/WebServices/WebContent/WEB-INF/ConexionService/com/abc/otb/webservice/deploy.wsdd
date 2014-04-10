@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from ConexionService WSDL service -->
+
+  <service name="Conexion" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://webservice.otb.abc.com"/>
+      <parameter name="wsdlServiceElement" value="ConexionService"/>
+      <parameter name="schemaQualified" value="http://xml.apache.org/xml-soap,http://logico.otb.abc.com,http://webservice.otb.abc.com"/>
+      <parameter name="wsdlServicePort" value="Conexion"/>
+      <parameter name="className" value="com.abc.otb.webservice.Conexion"/>
+      <parameter name="wsdlPortType" value="Conexion"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://webservice.otb.abc.com" xmlns:retNS="http://webservice.otb.abc.com" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="realizarSentencia" qname="operNS:realizarSentencia" returnQName="retNS:realizarSentenciaReturn" returnType="rtns:int" soapAction="">
+        <parameter xmlns:pns="http://webservice.otb.abc.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:sentenciaSQL" type="tns:string"/>
+        <parameter xmlns:pns="http://webservice.otb.abc.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:empresa" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://webservice.otb.abc.com" xmlns:retNS="http://webservice.otb.abc.com" xmlns:rtns="http://xml.apache.org/xml-soap" name="realizarConsulta" qname="operNS:realizarConsulta" returnQName="retNS:realizarConsultaReturn" returnType="rtns:Map" soapAction="">
+        <parameter xmlns:pns="http://webservice.otb.abc.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:sql" type="tns:string"/>
+        <parameter xmlns:pns="http://webservice.otb.abc.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:empresa" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://webservice.otb.abc.com" xmlns:retNS="http://webservice.otb.abc.com" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="realizarLoteSentencias" qname="operNS:realizarLoteSentencias" returnQName="retNS:realizarLoteSentenciasReturn" returnType="rtns:int" soapAction="">
+        <parameter xmlns:pns="http://webservice.otb.abc.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:elLote" type="tns:string"/>
+        <parameter xmlns:pns="http://webservice.otb.abc.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:empresa" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://webservice.otb.abc.com" xmlns:retNS="http://webservice.otb.abc.com" xmlns:rtns="http://logico.otb.abc.com" name="obtenerDatosXML" qname="operNS:obtenerDatosXML" returnQName="retNS:obtenerDatosXMLReturn" returnType="rtns:ConfiguracionBaseDatos" soapAction="">
+        <parameter xmlns:pns="http://webservice.otb.abc.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:empresa" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://webservice.otb.abc.com" name="escribirDatosXML" qname="operNS:escribirDatosXML" soapAction="">
+        <parameter xmlns:pns="http://webservice.otb.abc.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:datosBeco" type="tns:string"/>
+        <parameter xmlns:pns="http://webservice.otb.abc.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:datosAmand" type="tns:string"/>
+        <parameter xmlns:pns="http://webservice.otb.abc.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:datosAbstracta" type="tns:string"/>
+        <parameter xmlns:pns="http://webservice.otb.abc.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:datosBcMuebles" type="tns:string"/>
+        <parameter xmlns:pns="http://webservice.otb.abc.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:datosCapuy" type="tns:string"/>
+      </operation>
+      <parameter name="allowedMethods" value="obtenerDatosXML escribirDatosXML realizarLoteSentencias realizarConsulta realizarSentencia"/>
+
+      <typeMapping xmlns:ns="http://logico.otb.abc.com" qname="ns:ConfiguracionBaseDatos" type="java:com.abc.otb.logico.ConfiguracionBaseDatos" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+  </service>
+</deployment>

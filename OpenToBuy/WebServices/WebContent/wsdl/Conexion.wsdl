@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://webservice.otb.abc.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://webservice.otb.abc.com" xmlns:intf="http://webservice.otb.abc.com" xmlns:tns1="http://logico.otb.abc.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://webservice.otb.abc.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://logico.otb.abc.com"/>
+   <import namespace="http://xml.apache.org/xml-soap"/>
+   <element name="realizarSentencia">
+    <complexType>
+     <sequence>
+      <element name="sentenciaSQL" type="xsd:string"/>
+      <element name="empresa" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="realizarSentenciaResponse">
+    <complexType>
+     <sequence>
+      <element name="realizarSentenciaReturn" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="realizarConsulta">
+    <complexType>
+     <sequence>
+      <element name="sql" type="xsd:string"/>
+      <element name="empresa" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="realizarConsultaResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="realizarConsultaReturn" type="apachesoap:Map"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="realizarLoteSentencias">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="elLote" type="xsd:string"/>
+      <element name="empresa" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="realizarLoteSentenciasResponse">
+    <complexType>
+     <sequence>
+      <element name="realizarLoteSentenciasReturn" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerDatosXML">
+    <complexType>
+     <sequence>
+      <element name="empresa" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerDatosXMLResponse">
+    <complexType>
+     <sequence>
+      <element name="obtenerDatosXMLReturn" type="tns1:ConfiguracionBaseDatos"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="escribirDatosXML">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="datosBeco" type="xsd:string"/>
+      <element maxOccurs="unbounded" name="datosAmand" type="xsd:string"/>
+      <element maxOccurs="unbounded" name="datosAbstracta" type="xsd:string"/>
+      <element maxOccurs="unbounded" name="datosBcMuebles" type="xsd:string"/>
+      <element maxOccurs="unbounded" name="datosCapuy" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="escribirDatosXMLResponse">
+    <complexType/>
+   </element>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://xml.apache.org/xml-soap" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://logico.otb.abc.com"/>
+   <complexType name="mapItem">
+    <sequence>
+     <element name="key" nillable="true" type="xsd:anyType"/>
+     <element name="value" nillable="true" type="xsd:anyType"/>
+    </sequence>
+   </complexType>
+   <complexType name="Map">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="apachesoap:mapItem"/>
+    </sequence>
+   </complexType>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://logico.otb.abc.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://xml.apache.org/xml-soap"/>
+   <complexType name="ConfiguracionBaseDatos">
+    <sequence>
+     <element name="campo" nillable="true" type="xsd:string"/>
+     <element name="nombre" nillable="true" type="xsd:string"/>
+     <element name="ojdbc" nillable="true" type="xsd:string"/>
+     <element name="password" nillable="true" type="xsd:string"/>
+     <element name="url" nillable="true" type="xsd:string"/>
+     <element name="usuario" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="realizarSentenciaResponse">
+
+      <wsdl:part element="impl:realizarSentenciaResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="escribirDatosXMLResponse">
+
+      <wsdl:part element="impl:escribirDatosXMLResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerDatosXMLRequest">
+
+      <wsdl:part element="impl:obtenerDatosXML" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="escribirDatosXMLRequest">
+
+      <wsdl:part element="impl:escribirDatosXML" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="realizarLoteSentenciasRequest">
+
+      <wsdl:part element="impl:realizarLoteSentencias" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="realizarConsultaResponse">
+
+      <wsdl:part element="impl:realizarConsultaResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="realizarConsultaRequest">
+
+      <wsdl:part element="impl:realizarConsulta" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="realizarLoteSentenciasResponse">
+
+      <wsdl:part element="impl:realizarLoteSentenciasResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="realizarSentenciaRequest">
+
+      <wsdl:part element="impl:realizarSentencia" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerDatosXMLResponse">
+
+      <wsdl:part element="impl:obtenerDatosXMLResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="Conexion">
+
+      <wsdl:operation name="realizarSentencia">
+
+         <wsdl:input message="impl:realizarSentenciaRequest" name="realizarSentenciaRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:realizarSentenciaResponse" name="realizarSentenciaResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="realizarConsulta">
+
+         <wsdl:input message="impl:realizarConsultaRequest" name="realizarConsultaRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:realizarConsultaResponse" name="realizarConsultaResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="realizarLoteSentencias">
+
+         <wsdl:input message="impl:realizarLoteSentenciasRequest" name="realizarLoteSentenciasRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:realizarLoteSentenciasResponse" name="realizarLoteSentenciasResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerDatosXML">
+
+         <wsdl:input message="impl:obtenerDatosXMLRequest" name="obtenerDatosXMLRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:obtenerDatosXMLResponse" name="obtenerDatosXMLResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="escribirDatosXML">
+
+         <wsdl:input message="impl:escribirDatosXMLRequest" name="escribirDatosXMLRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:escribirDatosXMLResponse" name="escribirDatosXMLResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="ConexionSoapBinding" type="impl:Conexion">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="realizarSentencia">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="realizarSentenciaRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="realizarSentenciaResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="realizarConsulta">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="realizarConsultaRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="realizarConsultaResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="realizarLoteSentencias">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="realizarLoteSentenciasRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="realizarLoteSentenciasResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerDatosXML">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="obtenerDatosXMLRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="obtenerDatosXMLResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="escribirDatosXML">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="escribirDatosXMLRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="escribirDatosXMLResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="ConexionService">
+
+      <wsdl:port binding="impl:ConexionSoapBinding" name="Conexion">
+
+         <wsdlsoap:address location="http://localhost:8080/WebServices/services/Conexion"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

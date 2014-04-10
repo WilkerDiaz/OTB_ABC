@@ -1,0 +1,70 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from ConexionService WSDL service -->
+
+  <service name="Conexion" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://mediadorbd.otb.abc.com"/>
+      <parameter name="wsdlServiceElement" value="ConexionService"/>
+      <parameter name="schemaQualified" value="http://mediadorbd.otb.abc.com"/>
+      <parameter name="wsdlServicePort" value="Conexion"/>
+      <parameter name="className" value="com.abc.otb.mediadorbd.ConexionSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="Conexion"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="realizarConsulta" qname="operNS:realizarConsulta" xmlns:operNS="http://mediadorbd.otb.abc.com" returnQName="retNS:realizarConsultaReturn" xmlns:retNS="http://mediadorbd.otb.abc.com" returnType="rtns:anyType" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:sql" xmlns:pns="http://mediadorbd.otb.abc.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:empresa" xmlns:pns="http://mediadorbd.otb.abc.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="realizarLoteSentencias" qname="operNS:realizarLoteSentencias" xmlns:operNS="http://mediadorbd.otb.abc.com" returnQName="retNS:realizarLoteSentenciasReturn" xmlns:retNS="http://mediadorbd.otb.abc.com" returnType="rtns:int" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:loteSentencias" xmlns:pns="http://mediadorbd.otb.abc.com" type="tns:anyType" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:empresa" xmlns:pns="http://mediadorbd.otb.abc.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="realizarSentencia" qname="operNS:realizarSentencia" xmlns:operNS="http://mediadorbd.otb.abc.com" returnQName="retNS:realizarSentenciaReturn" xmlns:retNS="http://mediadorbd.otb.abc.com" returnType="rtns:int" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:sentenciaSQL" xmlns:pns="http://mediadorbd.otb.abc.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:empresa" xmlns:pns="http://mediadorbd.otb.abc.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <parameter name="allowedMethods" value="realizarLoteSentencias realizarConsulta realizarSentencia"/>
+
+      <typeMapping
+        xmlns:ns="http://mediadorbd.otb.abc.com"
+        qname="ns:>realizarSentenciaResponse"
+        type="java:com.abc.otb.mediadorbd.RealizarSentenciaResponse"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://mediadorbd.otb.abc.com"
+        qname="ns:>realizarLoteSentenciasResponse"
+        type="java:com.abc.otb.mediadorbd.RealizarLoteSentenciasResponse"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://mediadorbd.otb.abc.com"
+        qname="ns:>realizarSentencia"
+        type="java:com.abc.otb.mediadorbd.RealizarSentencia"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://mediadorbd.otb.abc.com"
+        qname="ns:>realizarLoteSentencias"
+        type="java:com.abc.otb.mediadorbd.RealizarLoteSentencias"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+  </service>
+</deployment>

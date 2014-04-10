@@ -1,0 +1,6 @@
+eclipse.preferences.version=1
+encoding//src/main/java/com/abc/otb/logico/ConfiguracionBaseDatos.java=UTF-8
+encoding//src/main/java/com/abc/otb/webservice/Conexion.java=UTF-8
+encoding//src/main/java/com/abc/otb/webservice/ConexionService.java=UTF-8
+encoding//src/main/java/com/abc/otb/webservice/ConexionServiceLocator.java=UTF-8
+encoding//src/main/java/com/abc/otb/webservice/ConexionSoapBindingStub.java=UTF-8

@@ -1,0 +1,85 @@
+<ns1:deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java" xmlns:ns1="http://xml.apache.org/axis/wsdd/">
+ <ns1:globalConfiguration>
+  <ns1:parameter name="sendMultiRefs" value="true"/>
+  <ns1:parameter name="disablePrettyXML" value="true"/>
+  <ns1:parameter name="adminPassword" value="admin"/>
+  <ns1:parameter name="attachments.Directory" value="C:\Users\ccastillo\Documents\proyectos\OpenToBuy\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\WebServices\WEB-INF\attachments"/>
+  <ns1:parameter name="dotNetSoapEncFix" value="true"/>
+  <ns1:parameter name="enableNamespacePrefixOptimization" value="false"/>
+  <ns1:parameter name="sendXMLDeclaration" value="true"/>
+  <ns1:parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
+  <ns1:parameter name="sendXsiTypes" value="true"/>
+  <ns1:requestFlow>
+   <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
+    <ns1:parameter name="scope" value="session"/>
+   </ns1:handler>
+   <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
+    <ns1:parameter name="scope" value="request"/>
+    <ns1:parameter name="extension" value=".jwr"/>
+   </ns1:handler>
+  </ns1:requestFlow>
+ </ns1:globalConfiguration>
+ <ns1:handler name="URLMapper" type="java:org.apache.axis.handlers.http.URLMapper"/>
+ <ns1:handler name="LocalResponder" type="java:org.apache.axis.transport.local.LocalResponder"/>
+ <ns1:handler name="Authenticate" type="java:org.apache.axis.handlers.SimpleAuthenticationHandler"/>
+ <ns1:service name="Conexion" provider="java:RPC" style="wrapped" use="literal">
+  <ns2:operation name="realizarSentencia" qname="ns1:realizarSentencia" returnQName="ns1:realizarSentenciaReturn" returnType="xsd:int" soapAction="" xmlns:ns1="http://webservice.otb.abc.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://xml.apache.org/axis/wsdd/">
+   <ns2:parameter qname="ns1:sentenciaSQL" type="xsd:string"/>
+   <ns2:parameter qname="ns1:empresa" type="xsd:string"/>
+  </ns2:operation>
+  <ns1:operation name="realizarConsulta" qname="ns2:realizarConsulta" returnQName="ns2:realizarConsultaReturn" returnType="ns3:Map" soapAction="" xmlns:ns2="http://webservice.otb.abc.com" xmlns:ns3="http://xml.apache.org/xml-soap">
+   <ns1:parameter qname="ns2:sql" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns2:empresa" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:operation name="realizarLoteSentencias" qname="ns4:realizarLoteSentencias" returnQName="ns4:realizarLoteSentenciasReturn" returnType="xsd:int" soapAction="" xmlns:ns4="http://webservice.otb.abc.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns4:elLote" type="xsd:string"/>
+   <ns1:parameter qname="ns4:empresa" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:operation name="obtenerDatosXML" qname="ns5:obtenerDatosXML" returnQName="ns5:obtenerDatosXMLReturn" returnType="ns6:ConfiguracionBaseDatos" soapAction="" xmlns:ns5="http://webservice.otb.abc.com" xmlns:ns6="http://logico.otb.abc.com">
+   <ns1:parameter qname="ns5:empresa" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:operation name="escribirDatosXML" qname="ns7:escribirDatosXML" soapAction="" xmlns:ns7="http://webservice.otb.abc.com">
+   <ns1:parameter qname="ns7:datosBeco" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns7:datosAmand" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns7:datosAbstracta" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns7:datosBcMuebles" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns7:datosCapuy" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="obtenerDatosXML escribirDatosXML realizarLoteSentencias realizarConsulta realizarSentencia"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="wsdlPortType" value="Conexion"/>
+  <ns1:parameter name="className" value="com.abc.otb.webservice.Conexion"/>
+  <ns1:parameter name="wsdlServicePort" value="Conexion"/>
+  <ns1:parameter name="schemaQualified" value="http://xml.apache.org/xml-soap,http://logico.otb.abc.com,http://webservice.otb.abc.com"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://webservice.otb.abc.com"/>
+  <ns1:parameter name="wsdlServiceElement" value="ConexionService"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns8:ConfiguracionBaseDatos" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:com.abc.otb.logico.ConfiguracionBaseDatos" xmlns:ns8="http://logico.otb.abc.com"/>
+ </ns1:service>
+ <ns1:service name="AdminService" provider="java:MSG">
+  <ns1:parameter name="allowedMethods" value="AdminService"/>
+  <ns1:parameter name="enableRemoteAdmin" value="false"/>
+  <ns1:parameter name="className" value="org.apache.axis.utils.Admin"/>
+  <ns1:namespace>http://xml.apache.org/axis/wsdd/</ns1:namespace>
+ </ns1:service>
+ <ns1:service name="Version" provider="java:RPC">
+  <ns1:parameter name="allowedMethods" value="getVersion"/>
+  <ns1:parameter name="className" value="org.apache.axis.Version"/>
+ </ns1:service>
+ <ns1:transport name="http">
+  <ns1:requestFlow>
+   <ns1:handler type="URLMapper"/>
+   <ns1:handler type="java:org.apache.axis.handlers.http.HTTPAuthHandler"/>
+  </ns1:requestFlow>
+  <ns1:parameter name="qs:list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <ns1:parameter name="qs:wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+  <ns1:parameter name="qs.list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <ns1:parameter name="qs.method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <ns1:parameter name="qs:method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <ns1:parameter name="qs.wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+ </ns1:transport>
+ <ns1:transport name="local">
+  <ns1:responseFlow>
+   <ns1:handler type="LocalResponder"/>
+  </ns1:responseFlow>
+ </ns1:transport>
+</ns1:deployment>
